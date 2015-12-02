@@ -1,4 +1,13 @@
 extends layout
 
 block content
-  p hello world
+  #todos
+    ul
+      li(v-for="todo in todos")
+        button(@click="remove_todo($index)")
+        span {{ todo.message }}
+    p(v-for="todo in todos")
+      input(type="text" name="input" v-model="todo.message")
+
+    input(type="text" name="input" v-model="new_todo" v-on:keyup.enter="add_todo")
+    button(@click="add_todo") Submit
